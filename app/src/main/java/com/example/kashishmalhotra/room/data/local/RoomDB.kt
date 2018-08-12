@@ -22,8 +22,7 @@ abstract class RoomDB : RoomDatabase() {
 
         fun initInstance(context: Context) =
                 roomDB ?: synchronized(this) {
-                    roomDB
-                            ?: buildDatabase(context).also { roomDB = it }
+                    roomDB?: buildDatabase(context).also { roomDB = it }
                 }
 
         private fun buildDatabase(context: Context) =
@@ -31,7 +30,7 @@ abstract class RoomDB : RoomDatabase() {
                         RoomDB::class.java, "RoomDB").addCallback(object : RoomDatabase.Callback() {
                     override fun onOpen(db: SupportSQLiteDatabase) {
                         super.onOpen(db)
-                        populateDB()
+                        //populateDB()
                     }
                 }).build()
 
